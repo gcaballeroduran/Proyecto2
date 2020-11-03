@@ -14,9 +14,9 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=6;
+      $line=5;
       Object lexer=$fix(Lexer.createTransducer());
-      $line=7;
+      $line=6;
       Lexer.testLexer($cast(gold.structures.automaton.ITransducer.class,lexer));
     }
     catch (Throwable $throwable) {
@@ -27,53 +27,53 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=13;
+      $line=12;
       java.util.Scanner sc=null;
       sc=$invokeConstructor(java.util.Scanner.class,new Object[]{$invokeField(System.class,"in",true,null)});
-      $line=15;
+      $line=14;
       Object input=$fix("");
-      $line=18;
+      $line=17;
       System.out.println($message(new Object[]{"----------------------------"}));
-      $line=19;
+      $line=18;
       System.out.println($message(new Object[]{"Enter one or more lines. End with a single line with $"}));
-      $line=20;
+      $line=19;
       System.out.println($message(new Object[]{"If you want to stop testing, enter EXIT"}));
-      $line=21;
+      $line=20;
       Object string=$fix(((java.util.Scanner)sc).nextLine());
-      $line=25;
+      $line=24;
       while (true) {
         if (!(!$opEqualY(string,"EXIT"))) break;
-        $line=29;
+        $line=28;
         while (true) {
           if (!(!$opEqualY($invokeMethod("charAt",string,new Object[]{0}),'$'))) break;
-          $line=30;
+          $line=29;
           input=$fix($opAdditY($opAdditY(input,string)," "));
-          $line=31;
+          $line=30;
           string=$fix(((java.util.Scanner)sc).nextLine());
         }
-        $line=34;
+        $line=33;
         Object result=$fix(((gold.structures.automaton.ITransducer)M).acceptsString($cast(java.lang.String.class,input)));
-        $line=35;
+        $line=34;
         Object tokenStream=$fix(((gold.structures.automaton.ITransducer)M).getOutputString());
-        $line=37;
+        $line=36;
         System.out.println($message(new Object[]{$opAdditY($opAdditY("The lexer did ",(($bool(result))?(""):("not ")))," accept the string.")}));
-        $line=38;
+        $line=37;
         if ($bool(result)) {
-          $line=38;
+          $line=37;
           System.out.println($message(new Object[]{$opAdditY("Token Stream: ",tokenStream)}));
         }
-        $line=40;
+        $line=39;
         System.out.println($message(new Object[]{"----------------------------"}));
-        $line=42;
+        $line=41;
         System.out.println($message(new Object[]{"Enter one or more lines. End with a single line with $"}));
-        $line=43;
+        $line=42;
         System.out.println($message(new Object[]{"If you want to stop testing, enter EXIT"}));
-        $line=44;
+        $line=43;
         string=$fix(((java.util.Scanner)sc).nextLine());
       }
-      $line=47;
+      $line=46;
       System.out.println($message(new Object[]{"Good bye"}));
-      $line=48;
+      $line=47;
       System.out.println($message(new Object[]{""}));
     }
     catch (Throwable $throwable) {
@@ -86,16 +86,18 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
+      $line=61;
+      Object preKW=$fix(GCollections.asSet("p","pl","plu","plus","t","ti","tim","time","times"));
       $line=62;
-      Object Q=$fix(GCollections.asSet("R","RV","s","n","nc","ncn","l","lp","lpl","lplp","lplc","lplcl","lplclp","lplclpf","lplpf","Err"));
+      Object Q=$fix(GCollections.asSet("I","Id","p","pl","plu","plus","t","ti","tim","time","times","Num","Err"));
       $line=64;
-      Object \u03A3=$fix($opUnionY($opUnionY($opIntvlY('a','z'),GCollections.asSet('(',')',' ','\n','{','}',';','!','[',']',',')),$opIntvlY('A','Z')));
+      Object \u03A3=$fix($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),GCollections.asSet('(',')',' ','\n')));
       $line=65;
       Object Out=$fix(GCollections.asSet('(',')','+','*','v','n'));
       $line=66;
-      Object q_0=$fix("R");
+      Object q_0=$fix("I");
       $line=67;
-      Object F=$fix(GCollections.asSet("R"));
+      Object F=$fix(GCollections.asSet("I"));
       $line=68;
       $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,\u03A3,Out,q_0,F,new GMethod(Lexer.class,"\u03B4"),new GMethod(Lexer.class,"g"),new GMethod(Lexer.class,"h")});
       if (true) break $try;
@@ -119,123 +121,99 @@ public final class Lexer {
       }
       else {
         $line=73;
-        if (($opEqualY(q,"R")&&$opEqualY(\u03C3,'R'))) {
+        if ($opMembrY(\u03C3,GCollections.asSet('(',')',' ','\n'))) {
           $line=73;
-          $result="R";
+          $result="I";
           if (true) break $try;
         }
         else {
           $line=74;
-          if (($opEqualY(q,"R")&&$opEqualY(\u03C3,'V'))) {
+          if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'p'))) {
             $line=74;
-            $result="RV";
+            $result="p";
             if (true) break $try;
           }
           else {
             $line=75;
-            if (($opEqualY(q,"RV")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+            if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'t'))) {
               $line=75;
-              $result="n";
+              $result="t";
               if (true) break $try;
             }
             else {
               $line=76;
-              if (($opEqualY(q,"n")&&$opEqualY(\u03C3,','))) {
+              if (($opEqualY(q,"I")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
                 $line=76;
-                $result="nc";
+                $result="Num";
                 if (true) break $try;
               }
               else {
                 $line=77;
-                if (($opEqualY(q,"nc")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
                   $line=77;
-                  $result="ncn";
+                  $result="Num";
                   if (true) break $try;
                 }
                 else {
-                  $line=79;
-                  if (($opEqualY(q,"lplclpf")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
-                    $line=79;
-                    $result="l";
+                  $line=78;
+                  if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                    $line=78;
+                    $result="Err";
                     if (true) break $try;
                   }
                   else {
                     $line=80;
-                    if (($opEqualY(q,"lplpf")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                    if (($opEqualY(q,"p")&&$opEqualY(\u03C3,'l'))) {
                       $line=80;
-                      $result="l";
+                      $result="pl";
                       if (true) break $try;
                     }
                     else {
                       $line=81;
-                      if (($opEqualY(q,"ncn")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                      if (($opEqualY(q,"pl")&&$opEqualY(\u03C3,'u'))) {
                         $line=81;
-                        $result="l";
+                        $result="plu";
                         if (true) break $try;
                       }
                       else {
                         $line=82;
-                        if (($opEqualY(q,"l")&&$opEqualY(\u03C3,'('))) {
+                        if (($opEqualY(q,"plu")&&$opEqualY(\u03C3,'s'))) {
                           $line=82;
-                          $result="lp";
+                          $result="plus";
                           if (true) break $try;
                         }
                         else {
                           $line=83;
-                          if (($opEqualY(q,"lp")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                          if (($opEqualY(q,"t")&&$opEqualY(\u03C3,'i'))) {
                             $line=83;
-                            $result="lpl";
+                            $result="ti";
                             if (true) break $try;
                           }
                           else {
-                            $line=85;
-                            if (($opEqualY(q,"lpl")&&$opEqualY(\u03C3,')'))) {
-                              $line=85;
-                              $result="lplp";
+                            $line=84;
+                            if (($opEqualY(q,"ti")&&$opEqualY(\u03C3,'m'))) {
+                              $line=84;
+                              $result="tim";
                               if (true) break $try;
                             }
                             else {
-                              $line=86;
-                              if (($opEqualY(q,"lplp")&&$opEqualY(\u03C3,';'))) {
-                                $line=86;
-                                $result="lplpf";
+                              $line=85;
+                              if (($opEqualY(q,"tim")&&$opEqualY(\u03C3,'e'))) {
+                                $line=85;
+                                $result="time";
                                 if (true) break $try;
                               }
                               else {
-                                $line=89;
-                                if (($opEqualY(q,"lpl")&&$opEqualY(\u03C3,','))) {
-                                  $line=89;
-                                  $result="lplc";
+                                $line=86;
+                                if (($opEqualY(q,"time")&&$opEqualY(\u03C3,'s'))) {
+                                  $line=86;
+                                  $result="times";
                                   if (true) break $try;
                                 }
                                 else {
-                                  $line=90;
-                                  if (($opEqualY(q,"lplc")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
-                                    $line=90;
-                                    $result="lplcl";
-                                    if (true) break $try;
-                                  }
-                                  else {
-                                    $line=91;
-                                    if (($opEqualY(q,"lplcl")&&$opEqualY(\u03C3,')'))) {
-                                      $line=91;
-                                      $result="lplclp";
-                                      if (true) break $try;
-                                    }
-                                    else {
-                                      $line=92;
-                                      if (($opEqualY(q,"lplclp")&&$opEqualY(\u03C3,';'))) {
-                                        $line=92;
-                                        $result="lplclpf";
-                                        if (true) break $try;
-                                      }
-                                      else {
-                                        $line=94;
-                                        $result="R";
-                                        if (true) break $try;
-                                      }
-                                    }
-                                  }
+                                  $line=89;
+                                  $result="Id";
+                                  if (true) break $try;
                                 }
                               }
                             }
@@ -250,7 +228,7 @@ public final class Lexer {
           }
         }
       }
-      $line=96;
+      $line=91;
       $rethrow(new RuntimeException("The function \"\u03B4(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -262,10 +240,10 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=101;
+      $line=96;
       $result="";
       if (true) break $try;
-      $line=102;
+      $line=97;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -277,23 +255,60 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=105;
+      $line=100;
       String s=null;
       s=$defaultValue(String.class);
-      $line=106;
+      $line=101;
       s=$cast(String.class,$fix(""));
-      $line=108;
-      if (!$opMembrY(q,GCollections.asSet("Err"))) {
-        $line=108;
-        $result=s;
-        if (true) break $try;
+      $line=103;
+      if ((!$opMembrY(q,GCollections.asSet("Err"))&&$opMembrY(\u03C3,GCollections.asSet('(',')',' ','\n')))) {
+        $line=104;
+        if (!$opMembrY(\u03C3,GCollections.asSet(' ','\n'))) {
+          $line=104;
+          s=$cast(String.class,$fix($invokeMethod(String.class,"valueOf",true,null,new Object[]{\u03C3})));
+        }
+        $line=105;
+        if ($opEqualY(q,"I")) {
+          $line=105;
+          $result=s;
+          if (true) break $try;
+        }
+        else {
+          $line=106;
+          if ($opEqualY(q,"plus")) {
+            $line=106;
+            $result=$opAdditY("+",s);
+            if (true) break $try;
+          }
+          else {
+            $line=107;
+            if ($opEqualY(q,"times")) {
+              $line=107;
+              $result=$opAdditY("*",s);
+              if (true) break $try;
+            }
+            else {
+              $line=108;
+              if ($opEqualY(q,"Num")) {
+                $line=108;
+                $result=$opAdditY("n",s);
+                if (true) break $try;
+              }
+              else {
+                $line=109;
+                $result=$opAdditY("v",s);
+                if (true) break $try;
+              }
+            }
+          }
+        }
       }
       else {
-        $line=109;
+        $line=111;
         $result="";
         if (true) break $try;
       }
-      $line=111;
+      $line=112;
       $rethrow(new RuntimeException("The function \"h(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
