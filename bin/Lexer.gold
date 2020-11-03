@@ -2,6 +2,7 @@ using gold.structures.automaton.*
 using gold.visualization.automaton.*
 
 procedure main(args:String[]) begin
+	// GAutomataFrame.show(createTransducer())
     lexer = createTransducer()
 	 testLexer(lexer)
 end
@@ -58,35 +59,39 @@ function createTransducer():ITransducer begin
 	// outputs a string of {'(',')','+','*','v','n'}
 
 	
-	preKW := {"p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times"} // prefixes of keywords
-	Q:= {"I","Id", "p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times", "Num","Err"}
+	Q:= {"R","RV","s" ,"n", "nc" ,"ncn", "l", "lp", "lpl" ,"lplp", "lplc", "lplcl", "lplclp","lplclpf","lplpf","Err"}
 	
-	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',' ','\n'} 
+	Σ:= ('a' ‥ 'z') ∪ {'(',')',' ','\n','{','}',';','!','[',']',','} ∪ ('A' ‥ 'Z')
 	Out:={'(',')','+','*','v','n'} 
-	q₀:="I"
-	F:= {"I"}
+	q₀:="R"
+	F:= {"R"}
 	return 	GDeterministicTransducer(Q,Σ,Out,q₀,F,δ,g,h)
 end
 
 function δ(q,σ) begin
 	if (q = "Err") then return "Err"
-	elseif  σ ∈ {'(',')',' ','\n'} then return "I"	
-    elseif q="I" and σ='p' then return "p"
-	elseif q="I" and σ='t' then return "t"
-	elseif q="I" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('a' ‥ 'z') then return "Err"
+    elseif q="R" and σ='R' then return "R"
+	elseif q="R" and σ='V' then return "RV"
+	elseif q="RV" and σ ∈ ('a' ‥ 'z') then return "n"
+	elseif	q="n" and σ = ',' then return "nc"
+	elseif	q="nc" and σ ∈ ('a' ‥ 'z') then return "ncn"
 	
-	elseif q="p" and σ='l' then return "pl" 
-    elseif q="pl" and σ='u' then return "plu" 
-    elseif q="plu" and σ='s' then return "plus" 
-	elseif q="t" and σ='i' then return "ti" 
-    elseif q="ti" and σ='m' then return "tim" 
-    elseif q="tim" and σ='e' then return "time" 
-    elseif q="time" and σ='s' then return "times" 
+	elseif	q="lplclpf" and σ ∈ ('A' ‥ 'Z') then return "l"
+    elseif	q="lplpf" and σ ∈ ('A' ‥ 'Z') then return "l"
+	elseif	q="ncn" and σ ∈ ('A' ‥ 'Z') then return "l"
+	elseif	q="l" and σ = '(' then return "lp"
+	elseif q="lp" and σ ∈ ('A' ‥ 'Z') then return "lpl" 
+		
+	elseif	q="lpl" and σ = ')' then return "lplp"
+    elseif q="lplp" and σ=';' then return "lplpf"
     
     
-    else  return "Id"
+	elseif	q="lpl" and σ = ',' then return "lplc"
+    elseif q="lplc" and σ ∈ ('A' ‥ 'Z') then return "lplcl"
+    elseif	q="lplcl" and σ = ')' then return "lplclp"
+    elseif	q="lplclp" and σ = ';' then return "lplclpf"
+    
+    else  return "R"
     end	
 end 
 
@@ -100,14 +105,7 @@ function h(q,σ) begin
 	var s: String
 	s := λ
 
-	if q ∉ {"Err"} and σ ∈ {'(',')',' ','\n'} then
-		if σ ∉ {' ','\n'} then  s=String.valueOf(σ) end
-		if q=="I" then return s
-    	elseif q=="plus" then return "+"+s 
-   		elseif q=="times" then return "*"+s
-		elseif q=="Num" then return "n"+s
-		else return "v"+s
- 		end
+	if q ∉ {"Err"} then return s
 	else return  λ
 	end
 end
