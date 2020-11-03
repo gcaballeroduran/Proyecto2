@@ -10,15 +10,42 @@ end
 
 procedure testLexer(M:ITransducer) begin
 	var sc:java.util.Scanner(System.$in)
-	while true do
+    	
+	input = ""
+		
+		
 		print "----------------------------"
-		print "Enter an input string: "
-		string:=sc.nextLine()+" "   //We add a space (which is also a separator to the end of the string)
-		result:=M.acceptsString(string)    
+		print "Enter one or more lines. End with a single line with $"
+       print "If you want to stop testing, enter EXIT"
+       string:=sc.nextLine() 
+
+
+
+	while string != "EXIT" do
+		
+		
+       
+       while string.charAt(0) != '$' do
+              input := input + string + " "
+              string:=sc.nextLine()
+       end
+       
+       result:=M.acceptsString(input)    
 		tokenStream := M.getOutputString()
+		
 		print "The lexer did "+(result?"":"not ")+" accept the string."
 		if result then print "Token Stream: "+ tokenStream end		
+
+       print "----------------------------"
+	
+	   print "Enter one or more lines. End with a single line with $"
+       print "If you want to stop testing, enter EXIT"
+       string:=sc.nextLine() 
+
 	end
+print  "Good bye"
+print  ""
+
 end 
 
  
@@ -34,7 +61,7 @@ function createTransducer():ITransducer begin
 	preKW := {"p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times"} // prefixes of keywords
 	Q:= {"I","Id", "p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times", "Num","Err"}
 	
-	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',' '} 
+	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',' ','\n'} 
 	Out:={'(',')','+','*','v','n'} 
 	q₀:="I"
 	F:= {"I"}
@@ -43,7 +70,7 @@ end
 
 function δ(q,σ) begin
 	if (q = "Err") then return "Err"
-	elseif  σ ∈ {'(',')',' '} then return "I"	
+	elseif  σ ∈ {'(',')',' ','\n'} then return "I"	
     elseif q="I" and σ='p' then return "p"
 	elseif q="I" and σ='t' then return "t"
 	elseif q="I" and σ ∈ ('0' ‥ '9') then return "Num"
@@ -73,8 +100,8 @@ function h(q,σ) begin
 	var s: String
 	s := λ
 
-	if q ∉ {"Err"} and σ ∈ {'(',')',' '} then
-		if σ ∉ {' '} then  s=String.valueOf(σ) end
+	if q ∉ {"Err"} and σ ∈ {'(',')',' ','\n'} then
+		if σ ∉ {' ','\n'} then  s=String.valueOf(σ) end
 		if q=="I" then return s
     	elseif q=="plus" then return "+"+s 
    		elseif q=="times" then return "*"+s
