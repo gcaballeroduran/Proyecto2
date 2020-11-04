@@ -87,21 +87,19 @@ public final class Lexer {
     Object $result=null;
     $try:try {
       $line=61;
-      Object preKW=$fix(GCollections.asSet("p","pl","plu","plus","t","ti","tim","time","times"));
-      $line=62;
-      Object Q=$fix(GCollections.asSet("I","Id","p","pl","plu","plus","t","ti","tim","time","times","Num","Err"));
+      Object Q=$fix(GCollections.asSet("E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"));
+      $line=63;
+      Object \u03A3=$fix($opUnionY($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),GCollections.asSet('(',')',',','_',' ','\n','{','}','[',']',';')),$opIntvlY('A','Z')));
       $line=64;
-      Object \u03A3=$fix($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),GCollections.asSet('(',')',' ','\n')));
+      Object Out=$fix($opUnionY(GCollections.asSet('(',')',',','{','}','[',']','v','n',';','!'),$opIntvlY('A','Z')));
       $line=65;
-      Object Out=$fix(GCollections.asSet('(',')','+','*','v','n'));
-      $line=66;
       Object q_0=$fix("I");
-      $line=67;
+      $line=66;
       Object F=$fix(GCollections.asSet("I"));
-      $line=68;
+      $line=67;
       $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,\u03A3,Out,q_0,F,new GMethod(Lexer.class,"\u03B4"),new GMethod(Lexer.class,"g"),new GMethod(Lexer.class,"h")});
       if (true) break $try;
-      $line=69;
+      $line=68;
       $rethrow(new RuntimeException("The function \"createTransducer()\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -113,107 +111,299 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=72;
+      $line=71;
       if ($bool($opEqualY(q,"Err"))) {
-        $line=72;
+        $line=71;
         $result="Err";
         if (true) break $try;
       }
       else {
         $line=73;
-        if ($opMembrY(\u03C3,GCollections.asSet('(',')',' ','\n'))) {
+        if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'R'))) {
           $line=73;
-          $result="I";
+          $result="R";
           if (true) break $try;
         }
         else {
           $line=74;
-          if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'p'))) {
+          if (($opEqualY(q,"R")&&$opEqualY(\u03C3,'O'))) {
             $line=74;
-            $result="p";
+            $result="RO";
             if (true) break $try;
           }
           else {
             $line=75;
-            if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'t'))) {
+            if (($opEqualY(q,"RO")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
               $line=75;
-              $result="t";
+              $result="RO";
               if (true) break $try;
             }
             else {
               $line=76;
-              if (($opEqualY(q,"I")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
+              if (($opEqualY(q,"RO")&&$opEqualY(\u03C3,'_'))) {
                 $line=76;
-                $result="Num";
+                $result="RO";
                 if (true) break $try;
               }
               else {
-                $line=77;
-                if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
-                  $line=77;
-                  $result="Num";
+                $line=78;
+                if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'V'))) {
+                  $line=78;
+                  $result="V";
                   if (true) break $try;
                 }
                 else {
-                  $line=78;
-                  if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
-                    $line=78;
-                    $result="Err";
+                  $line=79;
+                  if (($opEqualY(q,"V")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                    $line=79;
+                    $result="V";
                     if (true) break $try;
                   }
                   else {
                     $line=80;
-                    if (($opEqualY(q,"p")&&$opEqualY(\u03C3,'l'))) {
+                    if (($opEqualY(q,"V")&&$opEqualY(\u03C3,' '))) {
                       $line=80;
-                      $result="pl";
+                      $result="E";
                       if (true) break $try;
                     }
                     else {
-                      $line=81;
-                      if (($opEqualY(q,"pl")&&$opEqualY(\u03C3,'u'))) {
-                        $line=81;
-                        $result="plu";
+                      $line=82;
+                      if (($opEqualY(q,"E")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                        $line=82;
+                        $result="n";
                         if (true) break $try;
                       }
                       else {
-                        $line=82;
-                        if (($opEqualY(q,"plu")&&$opEqualY(\u03C3,'s'))) {
-                          $line=82;
-                          $result="plus";
+                        $line=83;
+                        if (($opEqualY(q,"n")&&$opEqualY(\u03C3,' '))) {
+                          $line=83;
+                          $result="n";
                           if (true) break $try;
                         }
                         else {
-                          $line=83;
-                          if (($opEqualY(q,"t")&&$opEqualY(\u03C3,'i'))) {
-                            $line=83;
-                            $result="ti";
+                          $line=85;
+                          if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'B'))) {
+                            $line=85;
+                            $result="B";
                             if (true) break $try;
                           }
                           else {
-                            $line=84;
-                            if (($opEqualY(q,"ti")&&$opEqualY(\u03C3,'m'))) {
-                              $line=84;
-                              $result="tim";
+                            $line=86;
+                            if (($opEqualY(q,"B")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                              $line=86;
+                              $result="B";
                               if (true) break $try;
                             }
                             else {
-                              $line=85;
-                              if (($opEqualY(q,"tim")&&$opEqualY(\u03C3,'e'))) {
-                                $line=85;
-                                $result="time";
+                              $line=88;
+                              if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'a'))) {
+                                $line=88;
+                                $result="A";
                                 if (true) break $try;
                               }
                               else {
-                                $line=86;
-                                if (($opEqualY(q,"time")&&$opEqualY(\u03C3,'s'))) {
-                                  $line=86;
-                                  $result="times";
+                                $line=89;
+                                if (($opEqualY(q,"A")&&$opEqualY(\u03C3,'s'))) {
+                                  $line=89;
+                                  $result="AS";
                                   if (true) break $try;
                                 }
                                 else {
-                                  $line=89;
-                                  $result="Id";
-                                  if (true) break $try;
+                                  $line=90;
+                                  if (($opEqualY(q,"AS")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                    $line=90;
+                                    $result="AS";
+                                    if (true) break $try;
+                                  }
+                                  else {
+                                    $line=92;
+                                    if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'('))) {
+                                      $line=92;
+                                      $result="P";
+                                      if (true) break $try;
+                                    }
+                                    else {
+                                      $line=93;
+                                      if (($opEqualY(q,"P")&&$opEqualY(\u03C3,' '))) {
+                                        $line=93;
+                                        $result="P";
+                                        if (true) break $try;
+                                      }
+                                      else {
+                                        $line=94;
+                                        if (($opEqualY(q,"P")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                          $line=94;
+                                          $result="n";
+                                          if (true) break $try;
+                                        }
+                                        else {
+                                          $line=95;
+                                          if (($opEqualY(q,"I")&&$opEqualY(\u03C3,','))) {
+                                            $line=95;
+                                            $result="I";
+                                            if (true) break $try;
+                                          }
+                                          else {
+                                            $line=96;
+                                            if (($opEqualY(q,"I")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
+                                              $line=96;
+                                              $result="num";
+                                              if (true) break $try;
+                                            }
+                                            else {
+                                              $line=98;
+                                              if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'m'))) {
+                                                $line=98;
+                                                $result="M";
+                                                if (true) break $try;
+                                              }
+                                              else {
+                                                $line=99;
+                                                if (($opEqualY(q,"M")&&$opEqualY(\u03C3,'o'))) {
+                                                  $line=99;
+                                                  $result="mo";
+                                                  if (true) break $try;
+                                                }
+                                                else {
+                                                  $line=100;
+                                                  if (($opEqualY(q,"mo")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                                    $line=100;
+                                                    $result="mo";
+                                                    if (true) break $try;
+                                                  }
+                                                  else {
+                                                    $line=102;
+                                                    if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'t'))) {
+                                                      $line=102;
+                                                      $result="t";
+                                                      if (true) break $try;
+                                                    }
+                                                    else {
+                                                      $line=103;
+                                                      if (($opEqualY(q,"t")&&$opEqualY(\u03C3,'u'))) {
+                                                        $line=103;
+                                                        $result="tu";
+                                                        if (true) break $try;
+                                                      }
+                                                      else {
+                                                        $line=104;
+                                                        if (($opEqualY(q,"tu")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                                          $line=104;
+                                                          $result="tu";
+                                                          if (true) break $try;
+                                                        }
+                                                        else {
+                                                          $line=106;
+                                                          if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'n'))) {
+                                                            $line=106;
+                                                            $result="N";
+                                                            if (true) break $try;
+                                                          }
+                                                          else {
+                                                            $line=107;
+                                                            if (($opEqualY(q,"N")&&$opEqualY(\u03C3,'o'))) {
+                                                              $line=107;
+                                                              $result="NO";
+                                                              if (true) break $try;
+                                                            }
+                                                            else {
+                                                              $line=108;
+                                                              if (($opEqualY(q,"NO")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                                                $line=108;
+                                                                $result="NO";
+                                                                if (true) break $try;
+                                                              }
+                                                              else {
+                                                                $line=109;
+                                                                if (($opEqualY(q,"NO")&&$opEqualY(\u03C3,'('))) {
+                                                                  $line=109;
+                                                                  $result="NO";
+                                                                  if (true) break $try;
+                                                                }
+                                                                else {
+                                                                  $line=112;
+                                                                  if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'f'))) {
+                                                                    $line=112;
+                                                                    $result="F";
+                                                                    if (true) break $try;
+                                                                  }
+                                                                  else {
+                                                                    $line=113;
+                                                                    if (($opEqualY(q,"F")&&$opEqualY(\u03C3,'a'))) {
+                                                                      $line=113;
+                                                                      $result="FA";
+                                                                      if (true) break $try;
+                                                                    }
+                                                                    else {
+                                                                      $line=114;
+                                                                      if (($opEqualY(q,"FA")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                                                        $line=114;
+                                                                        $result="FA";
+                                                                        if (true) break $try;
+                                                                      }
+                                                                      else {
+                                                                        $line=117;
+                                                                        if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'p'))) {
+                                                                          $line=117;
+                                                                          $result="p";
+                                                                          if (true) break $try;
+                                                                        }
+                                                                        else {
+                                                                          $line=118;
+                                                                          if (($opEqualY(q,"p")&&$opEqualY(\u03C3,'u'))) {
+                                                                            $line=118;
+                                                                            $result="pu";
+                                                                            if (true) break $try;
+                                                                          }
+                                                                          else {
+                                                                            $line=119;
+                                                                            if (($opEqualY(q,"pu")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
+                                                                              $line=119;
+                                                                              $result="pu";
+                                                                              if (true) break $try;
+                                                                            }
+                                                                            else {
+                                                                              $line=122;
+                                                                              if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'E'))) {
+                                                                                $line=122;
+                                                                                $result="E";
+                                                                                if (true) break $try;
+                                                                              }
+                                                                              else {
+                                                                                $line=123;
+                                                                                if (($opEqualY(q,"E")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                                                                                  $line=123;
+                                                                                  $result="EN";
+                                                                                  if (true) break $try;
+                                                                                }
+                                                                                else {
+                                                                                  $line=126;
+                                                                                  $result="I";
+                                                                                  if (true) break $try;
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -228,7 +418,7 @@ public final class Lexer {
           }
         }
       }
-      $line=91;
+      $line=129;
       $rethrow(new RuntimeException("The function \"\u03B4(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -240,10 +430,10 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=96;
+      $line=134;
       $result="";
       if (true) break $try;
-      $line=97;
+      $line=135;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -255,60 +445,151 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=100;
+      $line=138;
       String s=null;
       s=$defaultValue(String.class);
-      $line=101;
+      $line=139;
       s=$cast(String.class,$fix(""));
-      $line=103;
-      if ((!$opMembrY(q,GCollections.asSet("Err"))&&$opMembrY(\u03C3,GCollections.asSet('(',')',' ','\n')))) {
-        $line=104;
-        if (!$opMembrY(\u03C3,GCollections.asSet(' ','\n'))) {
-          $line=104;
+      $line=141;
+      if ((!$opMembrY(q,GCollections.asSet("Err"))&&$opMembrY(\u03C3,GCollections.asSet('(',')',',',' ','\n',';','{','}','[',']')))) {
+        $line=142;
+        if ((!$opMembrY(\u03C3,GCollections.asSet(' ','\n'))&&!$opMembrY(q,GCollections.asSet("num")))) {
+          $line=142;
           s=$cast(String.class,$fix($invokeMethod(String.class,"valueOf",true,null,new Object[]{\u03C3})));
+          $line=142;
+          $result=s;
+          if (true) break $try;
         }
-        $line=105;
-        if ($opEqualY(q,"I")) {
-          $line=105;
+        $line=144;
+        if ($opEqualY(q,"RO")) {
+          $line=144;
+          s=$cast(String.class,$fix("R"));
+          $line=144;
           $result=s;
           if (true) break $try;
         }
         else {
-          $line=106;
-          if ($opEqualY(q,"plus")) {
-            $line=106;
-            $result=$opAdditY("+",s);
+          $line=145;
+          if ($opEqualY(q,"V")) {
+            $line=145;
+            s=$cast(String.class,$fix("V"));
+            $line=145;
+            $result=s;
             if (true) break $try;
           }
           else {
-            $line=107;
-            if ($opEqualY(q,"times")) {
-              $line=107;
-              $result=$opAdditY("*",s);
+            $line=146;
+            if ($opEqualY(q,"n")) {
+              $line=146;
+              s=$cast(String.class,$fix("n"));
+              $line=146;
+              $result=s;
               if (true) break $try;
             }
             else {
-              $line=108;
-              if ($opEqualY(q,"Num")) {
-                $line=108;
-                $result=$opAdditY("n",s);
+              $line=147;
+              if ($opEqualY(q,"AS")) {
+                $line=147;
+                s=$cast(String.class,$fix("A"));
+                $line=147;
+                $result=s;
                 if (true) break $try;
               }
               else {
-                $line=109;
-                $result=$opAdditY("v",s);
-                if (true) break $try;
+                $line=148;
+                if ($opEqualY(q,"num")) {
+                  $line=148;
+                  s=$cast(String.class,$fix($opAdditY("v",")")));
+                  $line=148;
+                  $result=s;
+                  if (true) break $try;
+                }
+                else {
+                  $line=149;
+                  if ($opEqualY(q,"B")) {
+                    $line=149;
+                    s=$cast(String.class,$fix("B"));
+                    $line=149;
+                    $result=s;
+                    if (true) break $try;
+                  }
+                  else {
+                    $line=150;
+                    if ($opEqualY(q,"mo")) {
+                      $line=150;
+                      s=$cast(String.class,$fix("M"));
+                      $line=150;
+                      $result=s;
+                      if (true) break $try;
+                    }
+                    else {
+                      $line=151;
+                      if ($opEqualY(q,"tu")) {
+                        $line=151;
+                        s=$cast(String.class,$fix("T"));
+                        $line=151;
+                        $result=s;
+                        if (true) break $try;
+                      }
+                      else {
+                        $line=152;
+                        if ($opEqualY(q,"NO")) {
+                          $line=152;
+                          s=$cast(String.class,$fix("!"));
+                          $line=152;
+                          $result=s;
+                          if (true) break $try;
+                        }
+                        else {
+                          $line=153;
+                          if ($opEqualY(q,"FA")) {
+                            $line=153;
+                            s=$cast(String.class,$fix("F"));
+                            $line=153;
+                            $result=s;
+                            if (true) break $try;
+                          }
+                          else {
+                            $line=154;
+                            if ($opEqualY(q,"pu")) {
+                              $line=154;
+                              s=$cast(String.class,$fix("P"));
+                              $line=154;
+                              $result=s;
+                              if (true) break $try;
+                            }
+                            else {
+                              $line=155;
+                              if ($opEqualY(q,"EN")) {
+                                $line=155;
+                                s=$cast(String.class,$fix("E"));
+                                $line=155;
+                                $result=s;
+                                if (true) break $try;
+                              }
+                              else {
+                                $line=156;
+                                $result="";
+                                if (true) break $try;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
       else {
-        $line=111;
+        $line=158;
         $result="";
         if (true) break $try;
       }
-      $line=112;
+      $line=160;
       $rethrow(new RuntimeException("The function \"h(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {

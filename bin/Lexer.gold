@@ -58,11 +58,10 @@ function createTransducer():ITransducer begin
 	// outputs a string of {'(',')','+','*','v','n'}
 
 	
-	preKW := {"p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times"} // prefixes of keywords
-	Q:= {"I","Id", "p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times", "Num","Err"}
+	Q:= {"E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"}
 	
-	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',' ','\n'} 
-	Out:={'(',')','+','*','v','n'} 
+	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',',','_',' ','\n','{','}','[',']',';'}  ∪ ('A' ‥ 'Z')
+	Out:={'(',')',',','{','}','[',']','v','n',';','!'}  ∪ ('A' ‥ 'Z')
 	q₀:="I"
 	F:= {"I"}
 	return 	GDeterministicTransducer(Q,Σ,Out,q₀,F,δ,g,h)
@@ -70,23 +69,62 @@ end
 
 function δ(q,σ) begin
 	if (q = "Err") then return "Err"
-	elseif  σ ∈ {'(',')',' ','\n'} then return "I"	
-    elseif q="I" and σ='p' then return "p"
-	elseif q="I" and σ='t' then return "t"
-	elseif q="I" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('a' ‥ 'z') then return "Err"
-	
-	elseif q="p" and σ='l' then return "pl" 
-    elseif q="pl" and σ='u' then return "plu" 
-    elseif q="plu" and σ='s' then return "plus" 
-	elseif q="t" and σ='i' then return "ti" 
-    elseif q="ti" and σ='m' then return "tim" 
-    elseif q="tim" and σ='e' then return "time" 
-    elseif q="time" and σ='s' then return "times" 
+	//ROBOT_R
+	elseif q="I" and σ='R' then return "R"
+	elseif q="R" and σ='O' then return "RO"
+	elseif q="RO" and σ ∈ ('A' ‥ 'Z') then return "RO"
+	elseif q="RO" and σ = '_' then return "RO"
+	//VARS
+   elseif q="I" and σ='V' then return "V"
+   elseif q="V" and σ ∈ ('A' ‥ 'Z') then return "V"
+   	elseif q="V" and σ =' ' then return "E"
+   	// a, b
+   	elseif q="E" and σ ∈ ('a' ‥ 'z') then return "n"
+   	elseif q="n" and σ = ' ' then return "n"
+   	//BEGIN 
+   	 elseif q="I" and σ = 'B' then return "B"
+    elseif q="B" and σ ∈ ('A' ‥ 'Z') then return "B"
+   	// assign
+    elseif q="I" and σ = 'a' then return "A"
+    elseif q="A" and σ = 's' then return "AS"
+    elseif q="AS" and σ ∈ ('a' ‥ 'z') then return "AS"
+    // (('a' ‥ 'z') ,number)
+    elseif q="I" and σ ='(' then return "P"
+    elseif q="P" and σ =' ' then return "P"
+    elseif q="P" and σ ∈('a' ‥ 'z') then return "n"
+    elseif q="I" and σ = ',' then return "I"
+    elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
+   // move
+    elseif q="I" and σ = 'm' then return "M"
+    elseif q="M" and σ = 'o' then return "mo"
+    elseif q="mo" and σ ∈ ('a' ‥ 'z') then return "mo"
+   // turn 
+    elseif q="I" and σ = 't' then return "t"
+    elseif q="t" and σ = 'u' then return "tu"
+    elseif q="tu" and σ ∈ ('a' ‥ 'z') then return "tu"
+    // not
+    elseif q="I" and σ = 'n' then return "N"
+    elseif q="N" and σ = 'o' then return "NO"
+    elseif q="NO" and σ ∈ ('a' ‥ 'z') then return "NO"
+    elseif q="NO" and σ ='(' then return "NO"
+    	
+    // face 
+    elseif q="I" and σ = 'f' then return "F"
+    elseif q="F" and σ = 'a' then return "FA"
+    elseif q="FA" and σ ∈ ('a' ‥ 'z') then return "FA"
+    	
+    // put 
+    elseif q="I" and σ = 'p' then return "p"
+    elseif q="p" and σ = 'u' then return "pu"
+    elseif q="pu" and σ ∈ ('a' ‥ 'z') then return "pu"
     
+    //END
+    elseif q="I" and σ = 'E' then return "E"
+    elseif q="E" and σ ∈ ('A' ‥ 'Z') then return "EN"
+    	
     
-    else  return "Id"
+    else  return "I"
+    
     end	
 end 
 
@@ -100,13 +138,23 @@ function h(q,σ) begin
 	var s: String
 	s := λ
 
-	if q ∉ {"Err"} and σ ∈ {'(',')',' ','\n'} then
-		if σ ∉ {' ','\n'} then  s=String.valueOf(σ) end
-		if q=="I" then return s
-    	elseif q=="plus" then return "+"+s 
-   		elseif q=="times" then return "*"+s
-		elseif q=="Num" then return "n"+s
-		else return "v"+s
- 		end
+	if q ∉ {"Err"} and σ ∈ {'(',')',',',' ','\n',';','{','}','[',']'} then
+		if σ ∉ {' ','\n'} and q ∉ {"num"}then  s=String.valueOf(σ) return s
+		end
+	if q=="RO" then s = "R" return s
+   	elseif q=="V" then s = "V" return s
+    elseif q=="n" then  s = "n"return s
+    elseif q=="AS" then s = "A"return s 
+    elseif q=="num" then s = "v"+")"return s 
+    elseif q=="B" then s = "B" return s 
+    elseif q=="mo" then s = "M" return s 
+    elseif q=="tu" then s = "T" return s 
+    elseif q=="NO" then s = "!" return s 
+    elseif q=="FA" then s = "F" return s 
+    elseif q=="pu" then s = "P" return s 
+     elseif q=="EN" then s = "E" return s 
+    else return  λ
+ 	end
 	else return  λ
 	end
+end
