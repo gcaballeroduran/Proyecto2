@@ -112,10 +112,12 @@ function δ(q,σ) begin
     elseif q="I" and σ = 'm' then return "M"
     elseif q="M" and σ = 'o' then return "mo"
     elseif q="mo" and σ ∈ ('a' ‥ 'z') then return "mo"
+    elseif q="mo" and σ = '(' then return "P"
    // turn 
     elseif q="I" and σ = 't' then return "t"
     elseif q="t" and σ = 'u' then return "tu"
     elseif q="tu" and σ ∈ ('a' ‥ 'z') then return "tu"
+    elseif q="tu" and σ = '(' then return "P"
     // not
     elseif q="I" and σ = 'n' then return "N"
     elseif q="N" and σ = 'o' then return "NO"
@@ -126,11 +128,13 @@ function δ(q,σ) begin
     elseif q="I" and σ = 'f' then return "F"
     elseif q="F" and σ = 'a' then return "FA"
     elseif q="FA" and σ ∈ ('a' ‥ 'z') then return "FA"
+    elseif q="FA" and σ = '(' then return "P"
     	
     // put 
     elseif q="I" and σ = 'p' then return "p"
     elseif q="p" and σ = 'u' then return "pu"
     elseif q="pu" and σ ∈ ('a' ‥ 'z') then return "pu"
+    elseif q="pu" and σ = '(' then return "P"
     
     //END
     elseif q="I" and σ = 'E' then return "E"
@@ -153,7 +157,8 @@ function h(q,σ) begin
 	s := λ
 
 	if q ∉ {"Err"} and σ ∈ {'(',')',',',' ','\n',';','{','}','[',']'} then
-		if σ ∉ {' ','\n'} and q ∉ {"num"}then  s=String.valueOf(σ) return s
+		if σ ∉ {' ','\n'} and q ∉ {"num","pu","FA","tu","mo"}
+		then  s=String.valueOf(σ) return s
 		end
 	if q=="RO" then s = "R" return s
    	elseif q=="V" then s = "V" return s
@@ -162,11 +167,11 @@ function h(q,σ) begin
     elseif q=="num" then s = "v"+")"return s 
      elseif q=="num2" then s = "v"return s
     elseif q=="Be" then s = "B" return s 
-    elseif q=="mo" then s = "M" return s 
-    elseif q=="tu" then s = "T" return s 
+    elseif q=="mo" then s = "M"+"(" return s 
+    elseif q=="tu" then s = "T"+"(" return s 
     elseif q=="NO" then s = "!" return s 
-    elseif q=="FA" then s = "F" return s 
-    elseif q=="pu" then s = "P" return s 
+    elseif q=="FA" then s = "F"+"(" return s 
+    elseif q=="pu" then s = "P"+"(" return s 
      elseif q=="EN" then s = "E" return s 
      elseif q=="l" then s = "L" return s 
      elseif q=="r" then s = "R" return s
