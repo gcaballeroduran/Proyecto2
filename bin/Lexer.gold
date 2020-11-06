@@ -58,7 +58,7 @@ function createTransducer():ITransducer begin
 	// outputs a string of {'(',')','+','*','v','n'}
 
 	
-	Q:= {"E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"}
+	Q:= {"Be","num2","b","n","r","l","E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"}
 	
 	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',',','_',' ','\n','{','}','[',']',';'}  ∪ ('A' ‥ 'Z')
 	Out:={'(',')',',','{','}','[',']','v','n',';','!'}  ∪ ('A' ‥ 'Z')
@@ -83,7 +83,7 @@ function δ(q,σ) begin
    	elseif q="n" and σ = ' ' then return "n"
    	//BEGIN 
    	 elseif q="I" and σ = 'B' then return "B"
-    elseif q="B" and σ ∈ ('A' ‥ 'Z') then return "B"
+    elseif q="B" and σ ∈ ('A' ‥ 'Z') then return "Be"
    	// assign
     elseif q="I" and σ = 'a' then return "A"
     elseif q="A" and σ = 's' then return "AS"
@@ -91,9 +91,23 @@ function δ(q,σ) begin
     // (('a' ‥ 'z') ,number)
     elseif q="I" and σ ='(' then return "P"
     elseif q="P" and σ =' ' then return "P"
-    elseif q="P" and σ ∈('a' ‥ 'z') then return "n"
+    elseif q="P" and σ = 'a'then return "n"
+    elseif q="P" and σ = 'b'then return "n"
+    elseif q="P" and σ = 'l' then return "l"
+    elseif q="l" and σ ∈ ('a' ‥ 'z') then return "l"
+    elseif q="P" and σ = 'r' then return "r"
+    elseif q="r" and σ ∈ ('a' ‥ 'z') then return "r"
+    elseif q="P" and σ = 'n' then return "n"
+    elseif q="n" and σ ∈ ('a' ‥ 'z') then return "n"
     elseif q="I" and σ = ',' then return "I"
     elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
+    //( number, ('a' ‥ 'z'))
+    elseif q="P" and σ ∈ ('0' ‥ '9') then return "num2"
+     elseif q="I" and σ = 'b' then return "b"
+    elseif q="b" and σ ∈ ('a' ‥ 'z') then return "b"
+    //(number)
+     elseif q="P" and σ ∈ ('0' ‥ '9') then return "num"
+      elseif q="P" and σ =')' then return "num"
    // move
     elseif q="I" and σ = 'm' then return "M"
     elseif q="M" and σ = 'o' then return "mo"
@@ -146,13 +160,18 @@ function h(q,σ) begin
     elseif q=="n" then  s = "n"return s
     elseif q=="AS" then s = "A"return s 
     elseif q=="num" then s = "v"+")"return s 
-    elseif q=="B" then s = "B" return s 
+     elseif q=="num2" then s = "v"return s
+    elseif q=="Be" then s = "B" return s 
     elseif q=="mo" then s = "M" return s 
     elseif q=="tu" then s = "T" return s 
     elseif q=="NO" then s = "!" return s 
     elseif q=="FA" then s = "F" return s 
     elseif q=="pu" then s = "P" return s 
      elseif q=="EN" then s = "E" return s 
+     elseif q=="l" then s = "L" return s 
+     elseif q=="r" then s = "R" return s
+     elseif q=="n" then s = "N" return s
+     elseif q=="b" then s = "B" return s
     else return  λ
  	end
 	else return  λ
