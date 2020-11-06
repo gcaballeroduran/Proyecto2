@@ -87,7 +87,7 @@ public final class Lexer {
     Object $result=null;
     $try:try {
       $line=61;
-      Object Q=$fix(GCollections.asSet("Be","num2","b","n","r","l","E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"));
+      Object Q=$fix(GCollections.asSet("Be","num2","b","n","r","l","E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"));
       $line=63;
       Object \u03A3=$fix($opUnionY($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),GCollections.asSet('(',')',',','_',' ','\n','{','}','[',']',';')),$opIntvlY('A','Z')));
       $line=64;
@@ -489,9 +489,17 @@ public final class Lexer {
                                                                                                                   if (true) break $try;
                                                                                                                 }
                                                                                                                 else {
-                                                                                                                  $line=144;
-                                                                                                                  $result="I";
-                                                                                                                  if (true) break $try;
+                                                                                                                  $line=142;
+                                                                                                                  if (($opEqualY(q,"EN")&&$opMembrY(\u03C3,$opIntvlY('A','Z')))) {
+                                                                                                                    $line=142;
+                                                                                                                    $result="EN";
+                                                                                                                    if (true) break $try;
+                                                                                                                  }
+                                                                                                                  else {
+                                                                                                                    $line=145;
+                                                                                                                    $result="I";
+                                                                                                                    if (true) break $try;
+                                                                                                                  }
                                                                                                                 }
                                                                                                               }
                                                                                                             }
@@ -546,7 +554,7 @@ public final class Lexer {
           }
         }
       }
-      $line=147;
+      $line=148;
       $rethrow(new RuntimeException("The function \"\u03B4(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -558,10 +566,10 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=152;
+      $line=153;
       $result="";
       if (true) break $try;
-      $line=153;
+      $line=154;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -573,175 +581,175 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=156;
+      $line=157;
       String s=null;
       s=$defaultValue(String.class);
-      $line=157;
+      $line=158;
       s=$cast(String.class,$fix(""));
-      $line=159;
+      $line=160;
       if ((!$opMembrY(q,GCollections.asSet("Err"))&&$opMembrY(\u03C3,GCollections.asSet('(',')',',',' ','\n',';','{','}','[',']')))) {
-        $line=160;
+        $line=161;
         if ((!$opMembrY(\u03C3,GCollections.asSet(' ','\n'))&&!$opMembrY(q,GCollections.asSet("num","pu","FA","tu","mo")))) {
-          $line=161;
+          $line=162;
           s=$cast(String.class,$fix($invokeMethod(String.class,"valueOf",true,null,new Object[]{\u03C3})));
-          $line=161;
+          $line=162;
           $result=s;
           if (true) break $try;
         }
-        $line=163;
+        $line=164;
         if ($opEqualY(q,"RO")) {
-          $line=163;
+          $line=164;
           s=$cast(String.class,$fix("R"));
-          $line=163;
+          $line=164;
           $result=s;
           if (true) break $try;
         }
         else {
-          $line=164;
+          $line=165;
           if ($opEqualY(q,"V")) {
-            $line=164;
+            $line=165;
             s=$cast(String.class,$fix("V"));
-            $line=164;
+            $line=165;
             $result=s;
             if (true) break $try;
           }
           else {
-            $line=165;
+            $line=166;
             if ($opEqualY(q,"n")) {
-              $line=165;
+              $line=166;
               s=$cast(String.class,$fix("n"));
-              $line=165;
+              $line=166;
               $result=s;
               if (true) break $try;
             }
             else {
-              $line=166;
+              $line=167;
               if ($opEqualY(q,"AS")) {
-                $line=166;
+                $line=167;
                 s=$cast(String.class,$fix("A"));
-                $line=166;
+                $line=167;
                 $result=s;
                 if (true) break $try;
               }
               else {
-                $line=167;
+                $line=168;
                 if ($opEqualY(q,"num")) {
-                  $line=167;
+                  $line=168;
                   s=$cast(String.class,$fix($opAdditY("v",")")));
-                  $line=167;
+                  $line=168;
                   $result=s;
                   if (true) break $try;
                 }
                 else {
-                  $line=168;
+                  $line=169;
                   if ($opEqualY(q,"num2")) {
-                    $line=168;
+                    $line=169;
                     s=$cast(String.class,$fix("v"));
-                    $line=168;
+                    $line=169;
                     $result=s;
                     if (true) break $try;
                   }
                   else {
-                    $line=169;
+                    $line=170;
                     if ($opEqualY(q,"Be")) {
-                      $line=169;
+                      $line=170;
                       s=$cast(String.class,$fix("B"));
-                      $line=169;
+                      $line=170;
                       $result=s;
                       if (true) break $try;
                     }
                     else {
-                      $line=170;
+                      $line=171;
                       if ($opEqualY(q,"mo")) {
-                        $line=170;
+                        $line=171;
                         s=$cast(String.class,$fix($opAdditY("M","(")));
-                        $line=170;
+                        $line=171;
                         $result=s;
                         if (true) break $try;
                       }
                       else {
-                        $line=171;
+                        $line=172;
                         if ($opEqualY(q,"tu")) {
-                          $line=171;
+                          $line=172;
                           s=$cast(String.class,$fix($opAdditY("T","(")));
-                          $line=171;
+                          $line=172;
                           $result=s;
                           if (true) break $try;
                         }
                         else {
-                          $line=172;
+                          $line=173;
                           if ($opEqualY(q,"NO")) {
-                            $line=172;
+                            $line=173;
                             s=$cast(String.class,$fix("!"));
-                            $line=172;
+                            $line=173;
                             $result=s;
                             if (true) break $try;
                           }
                           else {
-                            $line=173;
+                            $line=174;
                             if ($opEqualY(q,"FA")) {
-                              $line=173;
+                              $line=174;
                               s=$cast(String.class,$fix($opAdditY("F","(")));
-                              $line=173;
+                              $line=174;
                               $result=s;
                               if (true) break $try;
                             }
                             else {
-                              $line=174;
+                              $line=175;
                               if ($opEqualY(q,"pu")) {
-                                $line=174;
+                                $line=175;
                                 s=$cast(String.class,$fix($opAdditY("P","(")));
-                                $line=174;
+                                $line=175;
                                 $result=s;
                                 if (true) break $try;
                               }
                               else {
-                                $line=175;
+                                $line=176;
                                 if ($opEqualY(q,"EN")) {
-                                  $line=175;
+                                  $line=176;
                                   s=$cast(String.class,$fix("E"));
-                                  $line=175;
+                                  $line=176;
                                   $result=s;
                                   if (true) break $try;
                                 }
                                 else {
-                                  $line=176;
+                                  $line=177;
                                   if ($opEqualY(q,"l")) {
-                                    $line=176;
+                                    $line=177;
                                     s=$cast(String.class,$fix("L"));
-                                    $line=176;
+                                    $line=177;
                                     $result=s;
                                     if (true) break $try;
                                   }
                                   else {
-                                    $line=177;
+                                    $line=178;
                                     if ($opEqualY(q,"r")) {
-                                      $line=177;
+                                      $line=178;
                                       s=$cast(String.class,$fix("R"));
-                                      $line=177;
+                                      $line=178;
                                       $result=s;
                                       if (true) break $try;
                                     }
                                     else {
-                                      $line=178;
+                                      $line=179;
                                       if ($opEqualY(q,"n")) {
-                                        $line=178;
+                                        $line=179;
                                         s=$cast(String.class,$fix("N"));
-                                        $line=178;
+                                        $line=179;
                                         $result=s;
                                         if (true) break $try;
                                       }
                                       else {
-                                        $line=179;
+                                        $line=180;
                                         if ($opEqualY(q,"b")) {
-                                          $line=179;
+                                          $line=180;
                                           s=$cast(String.class,$fix("B"));
-                                          $line=179;
+                                          $line=180;
                                           $result=s;
                                           if (true) break $try;
                                         }
                                         else {
-                                          $line=180;
+                                          $line=181;
                                           $result="";
                                           if (true) break $try;
                                         }
@@ -763,11 +771,11 @@ public final class Lexer {
         }
       }
       else {
-        $line=182;
+        $line=183;
         $result="";
         if (true) break $try;
       }
-      $line=184;
+      $line=185;
       $rethrow(new RuntimeException("The function \"h(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {

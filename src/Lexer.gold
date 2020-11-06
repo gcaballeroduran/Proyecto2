@@ -58,7 +58,7 @@ function createTransducer():ITransducer begin
 	// outputs a string of {'(',')','+','*','v','n'}
 
 	
-	Q:= {"Be","num2","b","n","r","l","E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","E","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"}
+	Q:= {"Be","num2","b","n","r","l","E","EN","p","pu","F","FA","N","NO","t","tu","mo","M","B","I","P","R","V","n","RO","Err","A","AS","num","P","p2","n2"}
 	
 	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',',','_',' ','\n','{','}','[',']',';'}  ∪ ('A' ‥ 'Z')
 	Out:={'(',')',',','{','}','[',']','v','n',';','!'}  ∪ ('A' ‥ 'Z')
@@ -139,6 +139,7 @@ function δ(q,σ) begin
     //END
     elseif q="I" and σ = 'E' then return "E"
     elseif q="E" and σ ∈ ('A' ‥ 'Z') then return "EN"
+    elseif q="EN" and σ ∈ ('A' ‥ 'Z') then return "EN"
     	
     
     else  return "I"
